@@ -1,0 +1,30 @@
+.task-form-wrapper {
+  background-color: #3c4b6408;
+  width: 100%;
+  display: flex;
+  padding: 6px 15px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+}
+.task-form {
+  display: flex;
+  width: 100%;
+  padding: 10px 0px;
+
+  .task-input {
+    border: none;
+    background: transparent;
+    border-radius: 0px;
+    padding: 3px 15px !important;
+    &:focus {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+    }
+  }
+}
+
+.task-checkbox {
+  height: 18px;
+  width: 18px;
+}

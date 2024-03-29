@@ -1,0 +1,54 @@
+.create-button-wrapper {
+  margin-bottom: 20px;
+}
+.create-task-button {
+  border: 0;
+  background: none;
+  padding: 10px 40px 10px 15px;
+
+  &:hover {
+    background-color: beige;
+  }
+}
+
+.task-listing {
+  margin-bottom: 15px;
+
+  .task-item-wrapper {
+    display: flex;
+    width: 100%;
+
+    .task-item {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      width: 100%;
+      padding: 6px 15px;
+      border-radius: 10px;
+      &:hover {
+        background-color: rgba(229, 229, 229, 0.43);
+      }
+    }
+
+    .task-details {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .task-details__title {
+      width: 100%;
+    }
+
+    .task-options-dropdown-toggle {
+      border-radius: 50%;
+      color: #a3a3a3;
+
+      &:hover {
+        background: #d8d9da;
+        color: #000000;
+      }
+    }
+  }
+}

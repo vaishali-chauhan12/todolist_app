@@ -1,0 +1,11 @@
+.dropdown-toggle {
+  background-color: transparent;
+  color: black;
+  border: transparent;
+  align-items: center;
+  display: flex;
+  padding: 5px;
+  &:after {
+    display: none !important;
+  }
+}
