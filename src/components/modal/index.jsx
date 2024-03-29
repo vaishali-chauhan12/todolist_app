@@ -21,10 +21,10 @@ const Modal = function (props) {
     <CModal
       visible={true}
       onClose={() => setVisible(false)}
-      aria-labelledby="LiveDemoExampleLabel"
+      aria-labelledby="ListFormModal"
     >
       <CModalHeader onClose={() => setVisible(false)}>
-        <CModalTitle id="LiveDemoExampleLabel">{title}</CModalTitle>
+        <CModalTitle id="ListFormModal">{title}</CModalTitle>
       </CModalHeader>
       <CModalBody>{children}</CModalBody>
       {showFooter && (

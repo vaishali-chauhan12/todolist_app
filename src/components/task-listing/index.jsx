@@ -4,6 +4,7 @@ import { fetchAllTasks } from "../../store/task"
 import { CTabContent, CTabPane } from "@coreui/react"
 import TaskListHeader from "./task-list-header"
 import TaskListWrapper from "./task-list-wrapper"
+import { TASK_STATUS_NAV_MENU } from "..//../constants"
 import "./index.scss"
 
 const TaskListing = ({ listId }) => {
@@ -19,15 +20,13 @@ const TaskListing = ({ listId }) => {
     }
   }, [listId])
 
-  console.error("allTasks", allTasks)
-
   return (
     <div className="task-listing-main-wrapper">
       <TaskListHeader setActiveTab={setActiveTab} activeTab={activeTab} />
       <CTabContent>
         <CTabPane
           role="tabpanel"
-          aria-labelledby="all "
+          aria-labelledby={TASK_STATUS_NAV_MENU.ALL}
           visible={activeTab === 1}
         >
           <TaskListWrapper
@@ -38,7 +37,7 @@ const TaskListing = ({ listId }) => {
         </CTabPane>
         <CTabPane
           role="tabpanel"
-          aria-labelledby="profile-tab"
+          aria-labelledby={TASK_STATUS_NAV_MENU.PENDING}
           visible={activeTab === 2}
         >
           <TaskListWrapper
@@ -49,7 +48,7 @@ const TaskListing = ({ listId }) => {
         </CTabPane>
         <CTabPane
           role="tabpanel"
-          aria-labelledby="contact-tab"
+          aria-labelledby={TASK_STATUS_NAV_MENU.COMPLETED}
           visible={activeTab === 3}
         >
           <TaskListWrapper

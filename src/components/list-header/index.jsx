@@ -1,11 +1,4 @@
-import CIcon from "@coreui/icons-react"
-import {
-  CDropdown,
-  CDropdownToggle,
-  CDropdownMenu,
-  CDropdownItem,
-} from "@coreui/react"
-import { cilOptions } from "@coreui/icons"
+import EditOptions from "../edit-options"
 
 const ListHeader = (props) => {
   const { currentList, setIsEdit, onDelete } = props
@@ -16,19 +9,7 @@ const ListHeader = (props) => {
         <div className="content-subheading">{currentList?.note}</div>
       </div>
       <div className="content-header-options">
-        <CDropdown variant="btn-group">
-          <CDropdownToggle color="secondary" size="sm">
-            <CIcon icon={cilOptions} size="xl" />
-          </CDropdownToggle>
-          <CDropdownMenu>
-            <CDropdownItem href="#!" onClick={() => setIsEdit(true)}>
-              Edit
-            </CDropdownItem>
-            <CDropdownItem href="#!" onClick={() => onDelete(currentList?.id)}>
-              Delete
-            </CDropdownItem>
-          </CDropdownMenu>
-        </CDropdown>
+        <EditOptions onEdit={setIsEdit} onDelete={onDelete} id={currentList?.id}/>
       </div>
     </div>
   )

@@ -45,12 +45,13 @@ const Sidebar = () => {
           Today
         </CNavItem>
         <CNavTitle>Lists</CNavTitle>
-        {allLists.map((list) => (
+        {allLists.map((list, index) => (
           <CNavItem
             className="sidebar-nav-item"
             key={list.id}
             href="#"
             onClick={() => navigate(`/list/${list.id}`)}
+            data-testid={`list-nav-item-${index}`}
           >
             <CIcon customClassName="nav-icon" icon={cilList} />
             {list.title}

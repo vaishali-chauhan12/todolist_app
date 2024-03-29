@@ -33,12 +33,12 @@ const ListForm = ({ submitHandler, listData, buttonText }) => {
     formData.title && submitHandler(formData)
   }
   return (
-    <CForm onSubmit={onSubmit}>
+    <CForm onSubmit={onSubmit} role="form">
       <CInputGroup className="mb-3">
         <CFormInput
           type="text"
           name="title"
-          placeholder="Title"
+          placeholder="List Name"
           value={formData.title}
           onChange={handleInputChange}
           aria-describedby="List title"

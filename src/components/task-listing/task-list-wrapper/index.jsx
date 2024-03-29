@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useCallback, useState } from "react"
+import { useDispatch } from "react-redux"
 import {
   saveTask,
   markTaskComplete,
@@ -99,7 +99,7 @@ const TaskListWrapper = (props) => {
           isVisible={isNewTask}
         />
       )}
-      <div className="task-listing">
+      <ul className="task-listing">
         {currrentTaskList?.map((task) => (
           <TaskItem
             task={task}
@@ -110,7 +110,7 @@ const TaskListWrapper = (props) => {
             deleteHandler={onDelete}
           />
         ))}
-      </div>
+      </ul>
     </>
   )
 }
