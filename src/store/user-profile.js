@@ -1,15 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { authenticateUser } from "../services/auth"
 
 const userProfile = localStorage.getItem("userProfile")
   ? JSON.parse(localStorage.getItem("userProfile"))
   : {}
 
 const initialState = {
-  email: userProfile.email || "",
+  data: {
+    email: userProfile.email || "",
   userId: userProfile.userId || "",
   username: userProfile.username || "",
   isLoggedIn: userProfile.isLoggedIn || "",
+  }
 }
 
 const saveUserProfile = (state, action) => {
@@ -20,7 +21,7 @@ const saveUserProfile = (state, action) => {
     email: email,
     isLoggedIn: true,
   }
-  state = { ...state, userProfile }
+  state.data = { ...state.data, ...userProfile }
 
   localStorage.setItem("userProfile", JSON.stringify(userProfile))
 }
@@ -32,18 +33,5 @@ export const authUser = createSlice({
     saveUserProfile: saveUserProfile,
   },
 })
-
-export const loginUser = (payload) => {
-  return async (dispatch) => {
-    try {
-      const loginInfo = await authenticateUser(payload)
-      loginInfo.resultObj.user_id &&
-        dispatch(authUser.actions.saveUserProfile(loginInfo.resultObj))
-      //   toast.success("")
-    } catch (error) {
-      console.error("authUser", error)
-    }
-  }
-}
 
 export default authUser.reducer

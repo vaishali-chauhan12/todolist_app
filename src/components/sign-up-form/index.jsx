@@ -1,42 +1,43 @@
-import { useState } from "react"
-import Input from "../input"
-import Button from "../button"
-import { isValidEmail } from "../../utils"
-import { PASSWORD_MIN_LENGTH } from "../../constants"
+import { useState } from "react";
+import Input from "../input";
+import Button from "../button";
+import { isValidEmail } from "../../utils";
+import { PASSWORD_MIN_LENGTH } from "../../constants";
+import "./index.scss"
 
 const initialState = {
   username: "",
   email: "",
   password: "",
   confirmPassword: "",
-}
+};
 
 const SignUpForm = ({ onSubmit }) => {
-  const [loginState, setLoginState] = useState(initialState)
-  const [error, setError] = useState(initialState)
+  const [loginState, setLoginState] = useState(initialState);
+  const [error, setError] = useState(initialState);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     setLoginState((previousLoginState) => ({
       ...previousLoginState,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const validateField = (fieldName) => {
-    let isValidField = true
+    let isValidField = true;
     if (loginState[fieldName].trim() === "") {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Field is required",
-      }))
-      return
+      }));
+      return;
     } else {
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "",
-      }))
+      }));
     }
 
     if (
@@ -44,48 +45,48 @@ const SignUpForm = ({ onSubmit }) => {
       loginState.email &&
       !isValidEmail(loginState.email)
     ) {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Invalid email format",
-      }))
+      }));
     }
 
     if (
       fieldName === "password" &&
       loginState.password.length < PASSWORD_MIN_LENGTH
     ) {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Password must be atleast 6 characters long",
-      }))
+      }));
     }
 
     if (
       fieldName === "password" &&
       loginState.password !== loginState.confirmPassword
     ) {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         confirmPassword: "* Passwords didn’t match",
-      }))
+      }));
     }
-    return isValidField
-  }
+    return isValidField;
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    const isEmailValid = validateField("email")
-    const isPwdValid = validateField("password")
+    event.preventDefault();
+    const isEmailValid = validateField("email");
+    const isPwdValid = validateField("password");
 
     if (isEmailValid && isPwdValid) {
-      onSubmit(loginState)
+      onSubmit(loginState);
     } else {
-      console.error("error", error)
+      console.error("error", error);
     }
-  }
+  };
 
   return (
     <div className="sign-up-form-wrapper">
@@ -95,7 +96,7 @@ const SignUpForm = ({ onSubmit }) => {
           type="text"
           name="username"
           value={loginState.username}
-          placeholder="Username"
+          placeholder="Enter your username here"
           onChangeHandler={handleInputChange}
           className="login-form__input"
           required={true}
@@ -107,7 +108,7 @@ const SignUpForm = ({ onSubmit }) => {
           type="text"
           name="email"
           value={loginState.email}
-          placeholder="Email"
+          placeholder="Enter your email here"
           onChangeHandler={handleInputChange}
           className="login-form__input"
           required={true}
@@ -138,13 +139,12 @@ const SignUpForm = ({ onSubmit }) => {
           error={error.password}
           labelText="Confirm Password"
         />
-        <Button type="submit" className="login-form__button" />
+        <Button type="submit" className="login-form__button">
+          Sign Up
+        </Button>
       </form>
-      {/* <div className="text">
-        Already have an account? <span>Login</span>
-      </div> */}
     </div>
-  )
-}
+  );
+};
 
-export default SignUpForm
+export default SignUpForm;

@@ -15,33 +15,38 @@ import Notifications from "../notifications";
 import "./index.scss";
 
 const Header = () => {
-  const username = useSelector((state) => state.authUser.username);
+  const { isLoggedIn, username } = useSelector((state) => state.authUser.data);
 
   return (
     <>
       <CHeader expand="lg" className="header-wrapper">
         <CNavbarBrand href="#" className="header-left">
-          <CIcon icon={cilTask} size="lg" />
+          <CIcon className="text-success" icon={cilTask} size="lg" />
           <span>To Do App</span>
         </CNavbarBrand>
-        <div className="header-right">
-          <CForm className="d-flex">
-            <CInputGroup>
-              <CFormInput type="search" className="me-2" placeholder="Search" />
-            </CInputGroup>
-          </CForm>
-          <div className="header-right-icons">
-            <Notifications />
-            <CAvatar
-              color="secondary"
-              textColor="white"
-              style={{ "text-transform": "capitalize" }}
-            >
-              {username[0]}
-            </CAvatar>
+        {isLoggedIn && (
+          <div className="header-right">
+            <CForm className="d-flex">
+              <CInputGroup>
+                <CFormInput
+                  type="search"
+                  className="me-2"
+                  placeholder="Search"
+                />
+              </CInputGroup>
+            </CForm>
+            <div className="header-right-icons">
+              <Notifications />
+              <CAvatar
+                color="secondary"
+                textColor="white"
+                style={{ "text-transform": "capitalize" }}
+              >
+                {username[0]}
+              </CAvatar>
+            </div>
           </div>
-          {/* <Notifications /> */}
-        </div>
+        )}
       </CHeader>
     </>
   );

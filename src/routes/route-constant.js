@@ -1,6 +1,6 @@
 const ROUTE_CONSTANTS = {
   HOME: "/",
-  LOGIN: "/login",
+  LOGIN: "/signin",
   SIGN_UP: "/signup",
   LIST: "/list/:id",
 }

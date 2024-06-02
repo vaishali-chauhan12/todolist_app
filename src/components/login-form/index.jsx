@@ -1,40 +1,41 @@
-import { useState } from "react"
-import Input from "../input"
-import Button from "../button"
-import { isValidEmail } from "../../utils"
-import { PASSWORD_MIN_LENGTH } from "../../constants"
+import { useState } from "react";
+import Input from "../input";
+import Button from "../button";
+import { isValidEmail } from "../../utils";
+import { PASSWORD_MIN_LENGTH } from "../../constants";
+import "./index.scss";
 
 const initialState = {
   email: "",
   password: "",
-}
+};
 
 const LoginForm = ({ onSubmit }) => {
-  const [loginState, setLoginState] = useState(initialState)
-  const [error, setError] = useState(initialState)
+  const [loginState, setLoginState] = useState(initialState);
+  const [error, setError] = useState(initialState);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     setLoginState((previousLoginState) => ({
       ...previousLoginState,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const validateField = (fieldName) => {
-    let isValidField = true
+    let isValidField = true;
     if (loginState[fieldName].trim() === "") {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Field is required",
-      }))
-      return
+      }));
+      return;
     } else {
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "",
-      }))
+      }));
     }
 
     if (
@@ -42,37 +43,37 @@ const LoginForm = ({ onSubmit }) => {
       loginState.email &&
       !isValidEmail(loginState.email)
     ) {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Invalid email format",
-      }))
+      }));
     }
 
     if (
       fieldName === "password" &&
       loginState.password.length < PASSWORD_MIN_LENGTH
     ) {
-      isValidField = false
+      isValidField = false;
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Password must be atleast 6 characters long",
-      }))
+      }));
     }
-    return isValidField
-  }
+    return isValidField;
+  };
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    const isEmailValid = validateField("email")
-    const isPwdValid = validateField("password")
+    event.preventDefault();
+    const isEmailValid = validateField("email");
+    const isPwdValid = validateField("password");
 
     if (isEmailValid && isPwdValid) {
-      onSubmit(loginState)
+      onSubmit(loginState);
     } else {
-      console.error("error", error)
+      console.error("error", error);
     }
-  }
+  };
 
   return (
     <div className="login-form-wrapper">
@@ -101,10 +102,12 @@ const LoginForm = ({ onSubmit }) => {
           error={error.password}
           labelText="Password"
         />
-        <Button type="submit" className="login-form__button" />
+        <Button type="submit" className="login-form__button">
+          Sign In
+        </Button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;

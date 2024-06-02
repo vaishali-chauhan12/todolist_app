@@ -1,4 +1,6 @@
-import "./index.scss"
+import { CFormInput, CInputGroup, CFormTextarea } from "@coreui/react";
+
+import "./index.scss";
 
 const Input = (props) => {
   const {
@@ -15,20 +17,15 @@ const Input = (props) => {
     disabled,
     error,
     onChangeHandler,
-  } = props
+  } = props;
   const wrapperClassList = className
     ? `input-container ${className}-container`
-    : "input-container"
-  const classList = className ? `input-field ${className}` : "input-field"
+    : "input-container";
+  const classList = className ? `input-field ${className}` : "input-field";
 
   return (
     <div className={wrapperClassList}>
-      {isLabel && labelText && (
-        <label htmlFor={id} className="input-field__label">
-          {labelText}
-        </label>
-      )}
-      <input
+      <CFormInput
         id={id}
         type={type}
         className={classList}
@@ -39,10 +36,11 @@ const Input = (props) => {
         onChange={onChangeHandler}
         name={name}
         disabled={disabled}
+        label={labelText}
       />
       {error && <span className="input-field__error">{error}</span>}
     </div>
-  )
-}
+  );
+};
 
-export default Input
+export default Input;

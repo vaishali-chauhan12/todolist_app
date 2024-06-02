@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 import "./index.scss"
 
 const Sidebar = () => {
-  const userId = useSelector((state) => state.authUser.userId)
+  const userId = useSelector((state) => state.authUser.data.userId)
   const { allLists } = useSelector((state) => state.listCollection.data)
   const navigate = useNavigate()
 

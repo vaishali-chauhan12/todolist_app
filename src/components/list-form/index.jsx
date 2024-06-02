@@ -11,7 +11,7 @@ const initialState = {
 
 const ListForm = ({ submitHandler, listData, buttonText }) => {
   const [formData, setFormData] = useState(initialState)
-  const userId = useSelector((state) => state.authUser.userId)
+  const userId = useSelector((state) => state.authUser.data.userId)
 
   useEffect(() => {
     if (listData) {

@@ -4,11 +4,13 @@ import { fetchAllList } from "../services/list"
 const initialState = {
   data: {
     allLists: [],
+    defaultList: {}
   },
 }
 
 const updateListStore = (state, action) => {
-  state.data.allLists = [...action.payload]
+  state.data.allLists = action.payload.filter(list => list.title.toLowerCase() !== "home")
+  state.data.defaultList = action.payload.filter(list => list.title.toLowerCase() === "home")[0]
 }
 
 export const listCollection = createSlice({

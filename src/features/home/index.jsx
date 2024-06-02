@@ -1,24 +1,27 @@
-import { useState } from "react"
-import Button from "../../components/button"
-import Modal from "../../components/modal"
-import ListForm from "../../components/list-form"
-import { saveList } from "../../services/list"
-import TaskListing from "../../components/task-listing"
-
-import "./index.scss"
+import { useState } from "react";
+import { useSelector } from "react-redux";
+import Button from "../../components/button";
+import Modal from "../../components/modal";
+import ListForm from "../../components/list-form";
+import { saveList } from "../../services/list";
+import TaskListing from "../../components/task-listing";
+import "./index.scss";
 
 const Home = () => {
-  const [visible, setVisible] = useState(false)
+  const [visible, setVisible] = useState(false);
+  const defaultList = useSelector(
+    (state) => state.listCollection.data.defaultList
+  );
 
   const createList = (formdata) => {
     saveList(formdata)
       .then((response) => {
-        setVisible(false)
+        setVisible(false);
       })
       .catch((error) => {
-        console.error("catch", error)
-      })
-  }
+        console.error("catch", error);
+      });
+  };
 
   return (
     <div className="content-wrapper">
@@ -41,10 +44,10 @@ const Home = () => {
         </Modal>
       )}
       <div className="content-section">
-        <TaskListing />
+        <TaskListing listId={defaultList.id} />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

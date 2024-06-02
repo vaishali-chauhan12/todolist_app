@@ -5,7 +5,7 @@ import "./index.scss"
 const Button = (props) => {
   const {
     type,
-    color = "primary",
+    color = "success",
     variant,
     children,
     className = "",
