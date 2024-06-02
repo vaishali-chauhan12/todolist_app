@@ -10,19 +10,20 @@ const initialState = {
   status: 0,
   title: "",
   details: "",
-  dateTime: null,
+  scheduled_at: null,
 }
 
 const TaskForm = ({ submitHandler, setNewTask, isVisible, task }) => {
   const [formData, setFormData] = useState(initialState)
   const [isCalenderVisible, setCalenderVisibility] = useState(false)
+  const [datePickerState, setDatePicketState] = useState(false)
 
   useEffect(() => {
     document.getElementById("task-form-input")?.focus()
     if (task) {
       setFormData(task)
     }
-  }, [])
+  }, [task])
 
   const handleInputChange = (event) => {
     const { name, value } = event.target
@@ -33,15 +34,21 @@ const TaskForm = ({ submitHandler, setNewTask, isVisible, task }) => {
   }
 
   const setDate = (date) => {
+    console.error('setDate', date)
     setFormData((previousLoginState) => ({
       ...previousLoginState,
-      dateTime: date,
+      scheduled_at: date,
     }))
+    setDatePicketState(true)
   }
 
   const handleBlur = () => {
-    console.error("handleBlur")
-    onSubmit()
+    console.error("handleBlur", datePickerState)
+    if(datePickerState){
+      setDatePicketState(false)
+    } else {
+      onSubmit()
+    }
   }
 
   const handleKeyDown = (event) => {
@@ -115,6 +122,7 @@ const TaskForm = ({ submitHandler, setNewTask, isVisible, task }) => {
           <CustomDatePicker
             setDate={setDate}
             setCalenderVisibility={setCalenderVisibility}
+            value={formData.scheduled_at}
           />
         </div>
       </div>

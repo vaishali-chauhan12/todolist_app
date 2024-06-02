@@ -6,15 +6,16 @@ import {
   CFormInput,
   CAvatar,
   CInputGroup,
-} from "@coreui/react"
-import Button from "../button"
-import CIcon from "@coreui/icons-react"
-import { cilTask, cilSpeedometer } from "@coreui/icons"
-import { useSelector } from "react-redux"
-import "./index.scss"
+} from "@coreui/react";
+import Button from "../button";
+import CIcon from "@coreui/icons-react";
+import { cilTask } from "@coreui/icons";
+import { useSelector } from "react-redux";
+import Notifications from "../notifications";
+import "./index.scss";
 
 const Header = () => {
-  const username = useSelector((state) => state.authUser.username)
+  const username = useSelector((state) => state.authUser.username);
 
   return (
     <>
@@ -26,21 +27,24 @@ const Header = () => {
         <div className="header-right">
           <CForm className="d-flex">
             <CInputGroup>
-              {/* <CIcon customClassName="nav-icon" icon={cilSpeedometer} /> */}
               <CFormInput type="search" className="me-2" placeholder="Search" />
             </CInputGroup>
           </CForm>
-          <CAvatar
-            color="secondary"
-            textColor="white"
-            style={{ "text-transform": "capitalize" }}
-          >
-            {username[0]}
-          </CAvatar>
+          <div className="header-right-icons">
+            <Notifications />
+            <CAvatar
+              color="secondary"
+              textColor="white"
+              style={{ "text-transform": "capitalize" }}
+            >
+              {username[0]}
+            </CAvatar>
+          </div>
+          {/* <Notifications /> */}
         </div>
       </CHeader>
     </>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

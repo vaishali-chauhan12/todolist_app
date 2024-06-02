@@ -1,4 +1,10 @@
 @import url(fonts.scss);
+@import url(style-guide.scss);
+
+
+*{
+  font-family: "Poppins-Regular", sans-serif
+}
 
 .float-right {
   float: right;

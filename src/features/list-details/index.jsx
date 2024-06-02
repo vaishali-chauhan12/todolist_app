@@ -14,6 +14,7 @@ const ListDetails = () => {
   const { id } = useParams()
   const dispatch = useDispatch()
   const { allLists } = useSelector((state) => state.listCollection.data)
+  console.error('allLists', allLists)
   const currentList = allLists?.filter((list) => list.id == id)[0]
 
   const filterList = useCallback(

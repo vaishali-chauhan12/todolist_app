@@ -42,7 +42,7 @@ const Sidebar = () => {
           onClick={() => navigate(`/`)}
         >
           {/* <CIcon customClassName="nav-icon" icon={cilList} /> */}
-          Today
+          Home
         </CNavItem>
         <CNavTitle>Lists</CNavTitle>
         {allLists.map((list, index) => (

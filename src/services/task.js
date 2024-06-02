@@ -43,3 +43,11 @@ export function deleteTask(id) {
   }
   return APIService(options)
 }
+
+export function getNotifications() {
+  const options = {
+    method: "GET",
+    url: `task/getNotifications`,
+  }
+  return APIService(options)
+}

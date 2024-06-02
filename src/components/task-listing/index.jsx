@@ -4,7 +4,7 @@ import { fetchAllTasks } from "../../store/task"
 import { CTabContent, CTabPane } from "@coreui/react"
 import TaskListHeader from "./task-list-header"
 import TaskListWrapper from "./task-list-wrapper"
-import { TASK_STATUS_NAV_MENU } from "..//../constants"
+import { TASK_STATUS_NAV_MENU } from "../../constants"
 import "./index.scss"
 
 const TaskListing = ({ listId }) => {

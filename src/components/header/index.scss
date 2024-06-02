@@ -17,5 +17,12 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    .header-right-icons {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100px;
+    }
   }
 }

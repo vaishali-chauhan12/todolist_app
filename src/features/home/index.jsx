@@ -24,7 +24,7 @@ const Home = () => {
     <div className="content-wrapper">
       <div className="content-header">
         <div className="content-heading">
-          <div className="content-mainheading">Today</div>
+          <div className="content-mainheading">Home</div>
         </div>
         <Button color="success" clickHandler={() => setVisible(!visible)}>
           Create a list
