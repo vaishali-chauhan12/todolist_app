@@ -43,9 +43,9 @@ const Home = () => {
           <ListForm submitHandler={createList} setVisible={setVisible} />
         </Modal>
       )}
-      <div className="content-section">
+     {defaultList && <div className="content-section">
         <TaskListing listId={defaultList.id} />
-      </div>
+      </div>}
     </div>
   );
 };

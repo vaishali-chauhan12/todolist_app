@@ -15,6 +15,7 @@ const Authentication = () => {
   const info = useSelector((state) => state.authUser.data);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [loginError, setloginError] = useState(false);
 
   if (info.isLoggedIn) {
     return <Navigate to="/" />;
@@ -38,6 +39,7 @@ const Authentication = () => {
         dispatch(authUser.actions.saveUserProfile(loginInfo.resultObj));
       navigate("/");
     } catch (error) {
+      setloginError(true);
       console.error("catch", error);
     }
   };
@@ -47,7 +49,6 @@ const Authentication = () => {
       <div className="auth-nav-tabs">
         <div
           className={`auth-nav-tab ${activeTab === 1 ? "auth-nav-tab_active" : ""}`}
-          active={activeTab === 1}
           onClick={() => setActiveTab(1)}
         >
           SIGN UP
@@ -67,7 +68,7 @@ const Authentication = () => {
         )}
         {activeTab === 2 && (
           <div>
-            <LoginForm onSubmit={loginHandler} />
+            <LoginForm onSubmit={loginHandler} loginError={loginError} />
           </div>
         )}
       </div>

@@ -1,18 +1,16 @@
 import {
   CHeader,
-  CContainer,
   CNavbarBrand,
   CForm,
   CFormInput,
-  CAvatar,
   CInputGroup,
 } from "@coreui/react";
-import Button from "../button";
 import CIcon from "@coreui/icons-react";
 import { cilTask } from "@coreui/icons";
 import { useSelector } from "react-redux";
 import Notifications from "../notifications";
 import "./index.scss";
+import Avatar from "./avatar";
 
 const Header = () => {
   const { isLoggedIn, username } = useSelector((state) => state.authUser.data);
@@ -37,13 +35,7 @@ const Header = () => {
             </CForm>
             <div className="header-right-icons">
               <Notifications />
-              <CAvatar
-                color="secondary"
-                textColor="white"
-                style={{ "text-transform": "capitalize" }}
-              >
-                {username[0]}
-              </CAvatar>
+              <Avatar />
             </div>
           </div>
         )}
