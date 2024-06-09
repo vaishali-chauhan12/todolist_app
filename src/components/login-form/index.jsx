@@ -10,7 +10,7 @@ const initialState = {
   password: "",
 };
 
-const LoginForm = ({ onSubmit }) => {
+const LoginForm = ({ onSubmit, loginError }) => {
   const [loginState, setLoginState] = useState(initialState);
   const [error, setError] = useState(initialState);
 
@@ -20,6 +20,7 @@ const LoginForm = ({ onSubmit }) => {
       ...previousLoginState,
       [name]: value,
     }));
+    validateField(name)
   };
 
   const validateField = (fieldName) => {
@@ -102,6 +103,7 @@ const LoginForm = ({ onSubmit }) => {
           error={error.password}
           labelText="Password"
         />
+        {loginError && <div class="form__error">Email or password is incorrect</div>}
         <Button type="submit" className="login-form__button">
           Sign In
         </Button>

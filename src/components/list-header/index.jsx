@@ -2,6 +2,7 @@ import EditOptions from "../edit-options"
 
 const ListHeader = (props) => {
   const { currentList, setIsEdit, onDelete } = props
+
   return (
     <div className="content-header">
       <div className="content-heading">

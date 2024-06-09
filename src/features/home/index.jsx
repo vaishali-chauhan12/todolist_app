@@ -1,22 +1,30 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 import Button from "../../components/button";
 import Modal from "../../components/modal";
 import ListForm from "../../components/list-form";
 import { saveList } from "../../services/list";
 import TaskListing from "../../components/task-listing";
+import { updateListCollection } from "../../store/list"
 import "./index.scss";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch()
   const [visible, setVisible] = useState(false);
   const defaultList = useSelector(
     (state) => state.listCollection.data.defaultList
   );
+  const userId = useSelector((state) => state.authUser.data.userId)
 
   const createList = (formdata) => {
     saveList(formdata)
       .then((response) => {
+        const listId = response?.resultObj?.id
+        dispatch(updateListCollection({ userId }))
         setVisible(false);
+        listId && navigate(`/list/${listId}`)
       })
       .catch((error) => {
         console.error("catch", error);

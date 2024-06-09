@@ -1,37 +1,39 @@
-import { useState, useEffect } from "react"
-import { useSelector } from "react-redux"
-import { CForm, CFormInput, CInputGroup } from "@coreui/react"
-import Button from "../button"
-import "./index.scss"
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { CForm, CFormInput, CInputGroup } from "@coreui/react";
+import Button from "../button";
+import "./index.scss";
 
 const initialState = {
   title: "",
   note: "",
-}
+};
 
 const ListForm = ({ submitHandler, listData, buttonText }) => {
-  const [formData, setFormData] = useState(initialState)
-  const userId = useSelector((state) => state.authUser.data.userId)
+  const [formData, setFormData] = useState(initialState);
+  const userId = useSelector((state) => state.authUser.data.userId);
 
   useEffect(() => {
     if (listData) {
-      setFormData(listData)
+      setFormData(listData);
     }
-  }, [listData])
+  }, [listData]);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     setFormData((previousLoginState) => ({
       ...previousLoginState,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const onSubmit = (event) => {
-    event.preventDefault()
-    formData.userId = userId
-    formData.title && submitHandler(formData)
-  }
+    event.preventDefault();
+    if (!formData.userId) {
+      formData.userId = userId;
+    }
+    formData.title && submitHandler(formData);
+  };
   return (
     <CForm onSubmit={onSubmit} role="form">
       <CInputGroup className="mb-3">
@@ -58,7 +60,7 @@ const ListForm = ({ submitHandler, listData, buttonText }) => {
         {buttonText ? buttonText : "Save"}
       </Button>
     </CForm>
-  )
-}
+  );
+};
 
-export default ListForm
+export default ListForm;

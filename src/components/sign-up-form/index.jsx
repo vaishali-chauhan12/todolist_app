@@ -22,6 +22,7 @@ const SignUpForm = ({ onSubmit }) => {
       ...previousLoginState,
       [name]: value,
     }));
+    validateField(name)
   };
 
   const validateField = (fieldName) => {

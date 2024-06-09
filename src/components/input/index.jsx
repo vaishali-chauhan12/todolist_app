@@ -28,7 +28,7 @@ const Input = (props) => {
       <CFormInput
         id={id}
         type={type}
-        className={classList}
+        className={error ? `${classList} input-error`: classList}
         title={title}
         placeholder={placeholder}
         value={value}

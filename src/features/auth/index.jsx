@@ -35,9 +35,13 @@ const Authentication = () => {
   const loginHandler = async (loginData) => {
     try {
       const loginInfo = await authenticateUser(loginData);
-      loginInfo.resultObj.user_id &&
-        dispatch(authUser.actions.saveUserProfile(loginInfo.resultObj));
-      navigate("/");
+      if (loginInfo.code == 200) {
+        loginInfo.resultObj.user_id &&
+          dispatch(authUser.actions.saveUserProfile(loginInfo.resultObj));
+        navigate("/");
+      } else {
+        setloginError(true);
+      }
     } catch (error) {
       setloginError(true);
       console.error("catch", error);

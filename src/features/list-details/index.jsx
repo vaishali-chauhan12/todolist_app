@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useSelector, useDispatch } from "react-redux"
 import TaskListing from "../../components/task-listing"
 import Modal from "../../components/modal"
@@ -10,11 +10,11 @@ import { updateList, deleteList } from "../../services/list"
 import { listCollection } from "../../store/list"
 
 const ListDetails = () => {
+  const navigate = useNavigate();
   const [isEdit, setIsEdit] = useState(false)
   const { id } = useParams()
   const dispatch = useDispatch()
   const { allLists } = useSelector((state) => state.listCollection.data)
-  console.error('allLists', allLists)
   const currentList = allLists?.filter((list) => list.id == id)[0]
 
   const filterList = useCallback(
@@ -26,7 +26,6 @@ const ListDetails = () => {
 
   const updateListChanges = useCallback(
     async (formdata) => {
-      console.error("updateList", formdata)
       try {
         await updateList(formdata)
         setIsEdit(false)
@@ -47,11 +46,12 @@ const ListDetails = () => {
         await deleteList(id)
         const filteredList = filterList(id)
         dispatch(listCollection.actions.updateListStore(filteredList))
+        navigate('/')
       } catch (error) {
         console.error("onDelete", error)
       }
     },
-    [dispatch, filterList],
+    [dispatch, filterList, navigate],
   )
 
   return (

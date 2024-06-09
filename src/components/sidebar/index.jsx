@@ -16,7 +16,7 @@ const Sidebar = () => {
 
   useEffect(() => {
     dispatch(updateListCollection({ userId }))
-  }, [])
+  }, [dispatch, userId])
 
   const sidebarStyles = {
     "--cui-sidebar-bg": "transparent",
@@ -37,14 +37,12 @@ const Sidebar = () => {
       <CSidebarNav style={navbarStyles}>
         <CNavItem
           className="sidebar-nav-item"
-          // key={list.id}
           href="#"
           onClick={() => navigate(`/`)}
         >
-          {/* <CIcon customClassName="nav-icon" icon={cilList} /> */}
           Home
         </CNavItem>
-        <CNavTitle>Lists</CNavTitle>
+        {allLists.length > 0 && <CNavTitle>Lists</CNavTitle>}
         {allLists.map((list, index) => (
           <CNavItem
             className="sidebar-nav-item"
