@@ -8,13 +8,16 @@ import {
 } from "@coreui/react";
 import { authUser } from "../../store/user-profile";
 import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
 
 const Avatar = () => {
   const { username } = useSelector((state) => state.authUser.data);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const logout = () => {
     dispatch(authUser.actions.logout());
+    navigate('/')
   };
 
   return (

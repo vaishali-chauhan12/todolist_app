@@ -1,76 +1,75 @@
-import { useState, useEffect } from "react"
-import { CFormInput, CInputGroup, CFormTextarea } from "@coreui/react"
-import ChildrenBlur from "../children-blur"
-import CustomDatePicker from "../date-picker"
-import CIcon from "@coreui/icons-react"
-import { cilCircle, cilCheckAlt } from "@coreui/icons"
-import "./index.scss"
+import { useState, useEffect } from "react";
+import { CFormInput, CInputGroup, CFormTextarea } from "@coreui/react";
+import ChildrenBlur from "../children-blur";
+import CustomDatePicker from "../date-picker";
+import CIcon from "@coreui/icons-react";
+import { cilCircle, cilCheckAlt } from "@coreui/icons";
+import Button from "../button";
+import "./index.scss";
 
 const initialState = {
   status: 0,
   title: "",
   details: "",
   scheduled_at: null,
-}
+};
 
 const TaskForm = ({ submitHandler, setNewTask, isVisible, task }) => {
-  const [formData, setFormData] = useState(initialState)
-  const [isCalenderVisible, setCalenderVisibility] = useState(false)
-  const [datePickerState, setDatePicketState] = useState(false)
+  const [formData, setFormData] = useState(initialState);
+  const [isCalenderVisible, setCalenderVisibility] = useState(false);
+  const [datePickerState, setDatePicketState] = useState(false);
 
   useEffect(() => {
-    document.getElementById("task-form-input")?.focus()
+    document.getElementById("task-form-input")?.focus();
     if (task) {
-      setFormData(task)
+      setFormData(task);
     }
-  }, [task])
+  }, [task]);
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target
+    const { name, value } = event.target;
     setFormData((previousLoginState) => ({
       ...previousLoginState,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
   const setDate = (date) => {
-    console.error('setDate', date)
     setFormData((previousLoginState) => ({
       ...previousLoginState,
       scheduled_at: date,
-    }))
-    setDatePicketState(true)
-  }
+    }));
+    setDatePicketState(true);
+  };
 
   const handleBlur = () => {
-    console.error("handleBlur", datePickerState)
-    if(datePickerState){
-      setDatePicketState(false)
+    if (datePickerState) {
+      setDatePicketState(false);
     } else {
-      onSubmit()
+      // onSubmit()
     }
-  }
+  };
 
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
-      onSubmit()
+      onSubmit();
     }
-  }
+  };
 
   const onSubmit = () => {
     if (isCalenderVisible) {
-      return
+      return;
     }
     if (formData.title.trim()) {
-      submitHandler(formData)
+      submitHandler(formData);
     }
-    setNewTask(false)
-  }
+    setNewTask(false);
+  };
 
   const updateTaskStatus = () => {
-    const status = formData.status ? 0 : 1
-    handleInputChange({ target: { name: "status", value: status } })
-  }
+    const status = formData.status ? 0 : 1;
+    handleInputChange({ target: { name: "status", value: status } });
+  };
   return (
     <ChildrenBlur
       id="task-form-wrapper"
@@ -124,10 +123,21 @@ const TaskForm = ({ submitHandler, setNewTask, isVisible, task }) => {
             setCalenderVisibility={setCalenderVisibility}
             value={formData.scheduled_at}
           />
+          <div>
+            <Button
+              type="button"
+              color="success"
+              variant="outline"
+              clickHandler={onSubmit}
+              className="save-task-button"
+            >
+              Save task
+            </Button>
+          </div>
         </div>
       </div>
     </ChildrenBlur>
-  )
-}
+  );
+};
 
-export default TaskForm
+export default TaskForm;
