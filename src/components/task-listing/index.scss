@@ -53,3 +53,27 @@
     }
   }
 }
+
+.fallback-section {
+  text-align: center;
+  img {
+    width: 250px;
+    height: 250px;
+  }
+  .fallback-text {
+    margin-bottom: 15px;
+  }
+  .fallback-text__line1 {
+    font-size: 15px;
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .fallback-text__line2 {
+    font-size: 12px;
+    color: #706e6e;
+  }
+}
+.attribution-text{
+  color: #fff;
+  font-size: 5px;
+}
