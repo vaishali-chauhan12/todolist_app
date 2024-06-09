@@ -6,10 +6,8 @@ import dayjs from 'dayjs';
 
 export default function CustomDatePicker({ setDate, setCalenderVisibility, value }) {
   const datePickerValue = value ? dayjs(formatDate(value)) : undefined
-  console.error('value', value, datePickerValue, dayjs())
 
   function changeHandler(date, dateString) {
-    console.error("onChange", dateString)
     setDate(dateString)
   }
 
