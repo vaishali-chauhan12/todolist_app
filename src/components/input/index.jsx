@@ -17,6 +17,7 @@ const Input = (props) => {
     disabled,
     error,
     onChangeHandler,
+    inputOnBlur = () => {}
   } = props;
   const wrapperClassList = className
     ? `input-container ${className}-container`
@@ -34,6 +35,7 @@ const Input = (props) => {
         value={value}
         required={required}
         onChange={onChangeHandler}
+        onBlur={inputOnBlur}
         name={name}
         disabled={disabled}
         label={labelText}

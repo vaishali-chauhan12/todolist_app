@@ -3,7 +3,7 @@ import Input from "../input";
 import Button from "../button";
 import { isValidEmail } from "../../utils";
 import { PASSWORD_MIN_LENGTH } from "../../constants";
-import "./index.scss"
+import "./index.scss";
 
 const initialState = {
   username: "",
@@ -22,7 +22,12 @@ const SignUpForm = ({ onSubmit }) => {
       ...previousLoginState,
       [name]: value,
     }));
-    validateField(name)
+  };
+
+
+  const inputOnBlur = (event) => {
+    const { name } = event.target;
+    validateField(name);
   };
 
   const validateField = (fieldName) => {
@@ -66,12 +71,23 @@ const SignUpForm = ({ onSubmit }) => {
 
     if (
       fieldName === "password" &&
+      loginState.confirmPassword &&
       loginState.password !== loginState.confirmPassword
     ) {
       isValidField = false;
       setError((previousError) => ({
         ...previousError,
         confirmPassword: "* Passwords didn’t match",
+      }));
+    } else if (fieldName === "confirmPassword" && !loginState.confirmPassword) {
+      setError((previousError) => ({
+        ...previousError,
+        confirmPassword: "* Field is required",
+      }));
+    } else {
+      setError((previousError) => ({
+        ...previousError,
+        confirmPassword: "",
       }));
     }
     return isValidField;
@@ -99,6 +115,7 @@ const SignUpForm = ({ onSubmit }) => {
           value={loginState.username}
           placeholder="Enter your username here"
           onChangeHandler={handleInputChange}
+          inputOnBlur={inputOnBlur}
           className="login-form__input"
           required={true}
           error={error.username}
@@ -111,6 +128,7 @@ const SignUpForm = ({ onSubmit }) => {
           value={loginState.email}
           placeholder="Enter your email here"
           onChangeHandler={handleInputChange}
+          inputOnBlur={inputOnBlur}
           className="login-form__input"
           required={true}
           error={error.email}
@@ -123,6 +141,7 @@ const SignUpForm = ({ onSubmit }) => {
           value={loginState.password}
           placeholder="Password"
           onChangeHandler={handleInputChange}
+          inputOnBlur={inputOnBlur}
           className="login-form__input"
           required={true}
           error={error.password}
@@ -135,9 +154,10 @@ const SignUpForm = ({ onSubmit }) => {
           value={loginState.confirmPassword}
           placeholder="Confirm Password"
           onChangeHandler={handleInputChange}
+          inputOnBlur={inputOnBlur}
           className="login-form__input"
           required={true}
-          error={error.password}
+          error={error.confirmPassword}
           labelText="Confirm Password"
         />
         <Button type="submit" className="login-form__button">

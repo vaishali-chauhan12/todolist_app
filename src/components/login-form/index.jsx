@@ -2,7 +2,6 @@ import { useState } from "react";
 import Input from "../input";
 import Button from "../button";
 import { isValidEmail } from "../../utils";
-import { PASSWORD_MIN_LENGTH } from "../../constants";
 import "./index.scss";
 
 const initialState = {
@@ -48,17 +47,6 @@ const LoginForm = ({ onSubmit, loginError }) => {
       setError((previousError) => ({
         ...previousError,
         [fieldName]: "* Invalid email format",
-      }));
-    }
-
-    if (
-      fieldName === "password" &&
-      loginState.password.length < PASSWORD_MIN_LENGTH
-    ) {
-      isValidField = false;
-      setError((previousError) => ({
-        ...previousError,
-        [fieldName]: "* Password must be atleast 6 characters long",
       }));
     }
     return isValidField;

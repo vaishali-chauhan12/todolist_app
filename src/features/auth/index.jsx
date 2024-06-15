@@ -5,7 +5,7 @@ import SignUpForm from "../../components/sign-up-form";
 import { Navigate, useNavigate, useLocation } from "react-router-dom";
 import { authUser } from "../../store/user-profile";
 import { signUpUser, authenticateUser } from "../../services/auth";
-import "./index.scss";
+import { toast } from "react-toastify";
 
 const Authentication = () => {
   const location = useLocation();
@@ -40,7 +40,10 @@ const Authentication = () => {
           dispatch(authUser.actions.saveUserProfile(loginInfo.resultObj));
         navigate("/");
       } else {
-        setloginError(true);
+        toast.error(loginInfo.message, {
+          autoClose: 5000,
+          position: "top-right",
+        });
       }
     } catch (error) {
       setloginError(true);

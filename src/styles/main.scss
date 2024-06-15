@@ -1,12 +1,12 @@
 @import url(fonts.scss);
 @import url(style-guide.scss);
 
-html{
+html {
   height: 100%;
 }
 
-*{
-  font-family: "Poppins-Regular", sans-serif
+* {
+  font-family: "Poppins-Regular", sans-serif;
 }
 
 .float-right {
@@ -55,4 +55,56 @@ textarea {
 .task-incomplete-icon {
   border-radius: 50%;
   padding: 3px;
+}
+
+.auth-form-wrapper {
+  height: 100%;
+  width: 450px;
+  padding: 30px;
+
+  .auth-nav-tabs {
+    display: flex;
+
+    .auth-nav-tab {
+      cursor: pointer;
+      font-weight: 700;
+      color: #536483;
+      width: 50%;
+      padding: 15px;
+      text-align: center;
+    }
+    .auth-nav-tab_active {
+      background-color: #fff;
+    }
+  }
+
+  .auth-form {
+    background-color: #fff;
+    padding: 30px;
+  }
+  .auth-form-label {
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+}
+
+.authentication-form-wrapper {
+  background-color: #fff;
+}
+.authentication-form {
+  display: flex;
+  flex-direction: column;
+}
+.auth-form__input-container {
+  margin-bottom: 10px;
+}
+
+.auth-form__button {
+  margin-top: 10px;
+}
+
+.auth-form__input.input-error {
+  border: 1px solid #a40000;
 }
