@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { isValidEmail } from "../../utils";
 import Input from "../input";
 import Button from "../button";
@@ -6,6 +7,7 @@ import Button from "../button";
 const ForgotPasswordForm = ({ onSubmit }) => {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState("");
+  const navigate = useNavigate();
 
   const onEmailChange = (event) => {
     const { value } = event.target;
@@ -43,6 +45,13 @@ const ForgotPasswordForm = ({ onSubmit }) => {
         <Button type="submit" className="auth-form__button">
           Reset Password
         </Button>
+        <div className="auth-form__link">
+          <div>
+            <a href="#" onClick={() => navigate(`/signin`)}>
+              Back to Sign In
+            </a>
+          </div>
+        </div>
       </form>
     </div>
   );

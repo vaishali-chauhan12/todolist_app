@@ -17,7 +17,7 @@ const Avatar = () => {
 
   const logout = () => {
     dispatch(authUser.actions.logout());
-    navigate('/')
+    navigate('/signin')
   };
 
   return (

@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const Authentication = () => {
   const location = useLocation();
   const [activeTab, setActiveTab] = useState(
-    location.pathname.indexOf("signin") !== -1 ? 2 : 1
+    location.pathname.indexOf("signup") !== -1 ? 1 : 2
   );
   const info = useSelector((state) => state.authUser.data);
   const dispatch = useDispatch();

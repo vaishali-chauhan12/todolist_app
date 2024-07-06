@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "../input";
 import Button from "../button";
 import { isValidEmail } from "../../utils";
@@ -12,6 +13,7 @@ const initialState = {
 const LoginForm = ({ onSubmit, loginError }) => {
   const [loginState, setLoginState] = useState(initialState);
   const [error, setError] = useState(initialState);
+  const navigate = useNavigate();
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -19,7 +21,7 @@ const LoginForm = ({ onSubmit, loginError }) => {
       ...previousLoginState,
       [name]: value,
     }));
-    validateField(name)
+    validateField(name);
   };
 
   const validateField = (fieldName) => {
@@ -91,10 +93,19 @@ const LoginForm = ({ onSubmit, loginError }) => {
           error={error.password}
           labelText="Password"
         />
-        {loginError && <div class="form__error">Email or password is incorrect</div>}
+        {loginError && (
+          <div class="form__error">Email or password is incorrect</div>
+        )}
         <Button type="submit" className="login-form__button">
           Sign In
         </Button>
+        <div className="auth-form__link">
+          <div>
+            <a href="#" onClick={() => navigate(`/forgotpassword`)}>
+              Forgot Password?
+            </a>
+          </div>
+        </div>
       </form>
     </div>
   );

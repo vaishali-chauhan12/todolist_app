@@ -6,7 +6,7 @@ const Footer = () => {
     <CFooter>
       <div className="footer-content">
         <span>To Do</span>
-        <span>&nbsp;&nbsp;&copy; 2024 creativeLabs.</span>
+        <span>&nbsp;&nbsp;&copy; 2024.</span>
       </div>
     </CFooter>
   )
