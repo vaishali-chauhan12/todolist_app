@@ -27,4 +27,4 @@ function truncateString(str, maxLength = 20) {
   return str;
 }
 
-export { isValidEmail, formatDate, truncateString };
+export { isEmptyObject, isValidEmail, formatDate, truncateString };

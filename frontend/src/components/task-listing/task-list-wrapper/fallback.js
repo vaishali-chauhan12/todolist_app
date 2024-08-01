@@ -5,7 +5,7 @@ const FallbackSection = (props) => {
     const {allTasks, setNewTask} = props;
     return (
         <div className="fallback-section">
-        <img src="../../../assets/images/no_list.jpg" />
+        <img src="../../../assets/images/no_list.jpg" alt="no-list" />
         <div>
           <a
             className="attribution-text"

@@ -4,8 +4,9 @@ const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const connection = require("./connection");
 const { sendEmail, mailTemplate } = require("../utils/email");
+const config = require("../config")
 
-const NumSaltRounds = Number(process.env.NO_OF_SALT_ROUNDS);
+const NumSaltRounds = Number(config.saltRounds);
 
 const getUserByEmail = (email) => {
   return new Promise(function (resolve, reject) {

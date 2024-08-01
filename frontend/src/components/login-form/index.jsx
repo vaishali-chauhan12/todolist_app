@@ -101,6 +101,7 @@ const LoginForm = ({ onSubmit, loginError }) => {
         </Button>
         <div className="auth-form__link">
           <div>
+            {/* eslint-disable-next-line */}
             <a href="#" onClick={() => navigate(`/forgotpassword`)}>
               Forgot Password?
             </a>

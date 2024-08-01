@@ -1,4 +1,4 @@
-import { CFormInput, CInputGroup, CFormTextarea } from "@coreui/react";
+import { CFormInput } from "@coreui/react";
 
 import "./index.scss";
 
@@ -7,7 +7,6 @@ const Input = (props) => {
     type,
     id,
     className,
-    isLabel,
     labelText,
     required,
     name,

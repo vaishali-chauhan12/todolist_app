@@ -47,6 +47,7 @@ const ForgotPasswordForm = ({ onSubmit }) => {
         </Button>
         <div className="auth-form__link">
           <div>
+            {/* eslint-disable-next-line */}
             <a href="#" onClick={() => navigate(`/signin`)}>
               Back to Sign In
             </a>

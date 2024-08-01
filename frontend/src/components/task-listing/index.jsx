@@ -18,7 +18,7 @@ const TaskListing = ({ listId }) => {
     if (listId) {
       dispatch(fetchAllTasks(listId))
     }
-  }, [listId])
+  }, [listId, dispatch])
 
   return (
     <div className="task-listing-main-wrapper">

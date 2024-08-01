@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const config = {
+  saltRounds: 10,
   db: {
     host: process.env.DATABASE_HOST,
     database: process.env.DATABASE_NAME,

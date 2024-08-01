@@ -1,0 +1,42 @@
+version: '3.1'
+services:
+  frontend-app:
+    build: ./frontend
+    ports:
+      - 3000:3000
+    depends_on:
+      - "backend-app"
+  backend-app:
+    build: ./backend
+    ports:
+     - 8001:8001
+    depends_on:
+      mysqldb:
+        condition: service_healthy
+    env_file: ./backend/.env
+    networks:
+      - nodejs-mysql-network
+  mysqldb:
+    image: mysql:8.0
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=todolist
+      - MYSQL_ROOT_USER=root
+      - MYSQL_ROOT_PASSWORD=root
+    volumes:
+      - ./SQL:/docker-entrypoint-initdb.d
+      - mysql-data:/var/lib/mysql
+    networks:
+      - nodejs-mysql-network
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      retries: 10
+      interval: 3s
+      timeout: 30s
+volumes:
+  mysql-data:
+networks:
+  nodejs-mysql-network:
+    name: nodejs-mysql-network
+

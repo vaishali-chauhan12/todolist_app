@@ -1,7 +1,7 @@
 const connection = require("./connection");
 const bcrypt = require("bcrypt");
-
-const NumSaltRounds = Number(process.env.NO_OF_SALT_ROUNDS);
+const config = require("../config")
+const NumSaltRounds = Number(config.saltRounds);
 
 const isUniqueEmail = (email) => {
   return new Promise(function (resolve, reject) {

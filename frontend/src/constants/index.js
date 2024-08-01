@@ -1,4 +1,3 @@
-// const API_BASE_PATH = process.env.APP_BASEURL
 const API_BASE_PATH = "http://localhost:8001"
 const PASSWORD_MIN_LENGTH = 6
 

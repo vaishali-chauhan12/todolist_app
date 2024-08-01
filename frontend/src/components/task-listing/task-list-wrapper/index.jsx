@@ -28,7 +28,7 @@ const TaskListWrapper = (props) => {
         console.error("createTask", error);
       }
     },
-    [allTasks]
+    [allTasks, dispatch]
   );
 
   const filterTasks = useCallback(
@@ -51,7 +51,7 @@ const TaskListWrapper = (props) => {
         console.error("updateTaskStatus", error);
       }
     },
-    [filterTasks]
+    [filterTasks, dispatch]
   );
 
   const updateTaskDetail = useCallback(
@@ -65,7 +65,7 @@ const TaskListWrapper = (props) => {
         console.error("updateTaskDetail", error);
       }
     },
-    [filterTasks]
+    [filterTasks, dispatch]
   );
 
   const onDelete = useCallback(
@@ -78,7 +78,7 @@ const TaskListWrapper = (props) => {
         console.error("onDelete", error);
       }
     },
-    [filterTasks]
+    [filterTasks, dispatch]
   );
 
   return (
