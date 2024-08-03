@@ -1,4 +1,4 @@
-const API_BASE_PATH = "http://localhost:8001"
+const API_BASE_PATH = process.env.REACT_APP_BACKEND_URL;
 const PASSWORD_MIN_LENGTH = 6
 
 const TASK_STATUS_NAV_MENU = {

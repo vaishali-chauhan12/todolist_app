@@ -10,6 +10,6 @@ CREATE TABLE IF NOT EXISTS task_list_mapping (task_id int(11) NOT NULL, list_id 
 
 CREATE TABLE IF NOT EXISTS reset_tokens (token varchar(255) not null, created_at varchar(255) not null, expires_at varchar(255) not null, user_id int not null, PRIMARY KEY(user_id, token));
 
-INSERT INTO user (username, email, password) VALUES ("Default User", "default-user@todalist.com", "$2a$10$pwPYXOxz4JCln8OUoRpkHuBoNg4QFYPrzCVuppMXEGXbY7AnbszjW");
+INSERT INTO user (username, email, password) VALUES ('Default User', 'default-user@todalist.com', '$2a$10$pwPYXOxz4JCln8OUoRpkHuBoNg4QFYPrzCVuppMXEGXbY7AnbszjW');
 
 INSERT INTO list (title, user_id) VALUES ('Home', LAST_INSERT_ID());
