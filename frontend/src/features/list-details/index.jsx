@@ -8,6 +8,7 @@ import ListHeader from "../../components/list-header";
 import "./index.scss";
 import { updateList, deleteList } from "../../services/list";
 import { listCollection } from "../../store/list";
+import { toast } from "react-toastify";
 
 const ListDetails = () => {
   const navigate = useNavigate();
@@ -56,6 +57,10 @@ const ListDetails = () => {
       try {
         await deleteList(id);
         const filteredList = filterList(id);
+        toast.success("List Deleted Successfully", {
+          autoClose: 5000,
+          position: "top-right",
+        });
         dispatch(listCollection.actions.updateListStore(filteredList));
         navigate("/");
       } catch (error) {
