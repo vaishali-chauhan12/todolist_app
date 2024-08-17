@@ -10,8 +10,3 @@ Step 2: start docker container
 Step 3: Access application UI from browser
 
     http://localhost:3000
-    
-Step 4: Enter following default email and password:
-
-    email: default-user@todalist.com
-    password: 
